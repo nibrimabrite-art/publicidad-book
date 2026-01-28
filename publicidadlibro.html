@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Enigma del Autor | Portal Místico</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Special+Elite&family=Quicksand:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --magic-indigo: #6366f1;
+            --dark-void: #0f172a;
+            --ethereal-slate: #e2e8f0;
+            --gold-rune: #d4af37;
+            --neon-green: #4ade80;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+            background: var(--dark-void);
+            font-family: 'Special Elite', cursive;
+            color: var(--ethereal-slate);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Background Effects */
+        .nebula-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            z-index: -2;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+            z-index: -1;
+            animation: drift 120s linear infinite;
+        }
+
+        @keyframes drift {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 1000px; }
+        }
+
+        /* Mystic Card Styling */
+        .mystic-card {
+            background: rgba(15, 23, 42, 0.95);
+            border: 2px solid var(--magic-indigo);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .rune-glow {
+            font-family: 'Cinzel Decorative', cursive;
+            color: var(--magic-indigo);
+            text-shadow: 0 0 15px var(--magic-indigo);
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h1, h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            letter-spacing: 2px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Input Styling */
+        input {
+            background: transparent !important;
+            border: none;
+            border-bottom: 2px solid var(--magic-indigo);
+            outline: none;
+            color: #818cf8;
+            text-align: center;
+            font-size: 1.3rem;
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            font-family: 'Special Elite', cursive;
+            transition: border-color 0.4s;
+        }
+
+        input:focus {
+            border-bottom-color: var(--ethereal-slate);
+        }
+
+        /* Particles */
+        .particle {
+            position: absolute;
+            background: var(--magic-indigo);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 5;
+            animation: floatUp linear forwards;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.8; }
+            100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+        }
+
+        .hidden { display: none; }
+
+        .btn-main {
+            background: var(--magic-indigo);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            letter-spacing: 3px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-main:hover {
+            box-shadow: 0 0 20px var(--magic-indigo);
+            transform: translateY(-2px);
+        }
+
+        .btn-link {
+            color: #818cf8;
+            text-decoration: underline;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-top: 2rem;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .typing-text {
+            min-height: 100px;
+        }
+
+        .copyright-tag {
+            font-size: 9px;
+            letter-spacing: 2px;
+            color: #475569;
+            margin-top: 2rem;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nebula-bg"></div>
+    <div class="stars"></div>
+
+    <div id="game-container" class="w-full flex justify-center flex-col items-center">
+        
+        <!-- Pantalla de Inicio -->
+        <div id="step-0" class="mystic-card fade-in">
+            <div class="rune-glow">ᛗ</div>
+            <h1 class="text-2xl mb-4">HAS ENCONTRADO EL ACCESO AL PORTAL</h1>
+            <p class="text-sm text-slate-400 mb-8 italic">Solo aquellos con la chispa divina pueden encontrar el conocimiento oculto.</p>
+            <button onclick="nextStep(1)" class="btn-main">ACEPTAR DESAFÍO</button>
+            <div class="copyright-tag">Obra Original Protegida | No Compartir</div>
+        </div>
+
+        <!-- Paso 1: El Libro -->
+        <div id="step-1" class="mystic-card hidden fade-in">
+            <h2 class="text-indigo-400 text-xs mb-4 tracking-widest uppercase">Primer Desafio</h2>
+            <div id="text-1" class="typing-text text-lg mb-6 leading-relaxed"></div>
+            
+            <div id="ui-1" class="opacity-0 transition-opacity duration-700">
+                <input type="text" id="ans-1" placeholder="Una palabra..." autocomplete="off" spellcheck="false">
+                <div id="error-1" class="text-red-400 text-xs mt-4 opacity-0 transition-opacity">Respuesta incorrecta. El silencio no es la clave.</div>
+                <button onclick="checkStep1()" class="btn-link">REVELAR</button>
+            </div>
+        </div>
+
+        <!-- Paso 2: Conocimiento -->
+        <div id="step-2" class="mystic-card hidden fade-in">
+            <h2 class="text-indigo-400 text-xs mb-4 tracking-widest uppercase">Segundo Desafio</h2>
+            <div id="text-2" class="typing-text text-lg mb-6 leading-relaxed"></div>
+            
+            <div id="ui-2" class="opacity-0 transition-opacity duration-700">
+                <p class="text-[10px] text-slate-500 italic mb-4">(Pista: Lo que todo estudiante persigue pero el sabio ya posee)</p>
+                <input type="text" id="ans-2" placeholder="Una palabra..." autocomplete="off" spellcheck="false">
+                <div id="error-2" class="text-red-400 text-xs mt-4 opacity-0 transition-opacity">Esa no es la meta verdadera.</div>
+                <button onclick="checkStep2()" class="btn-link">DESCIFRAR</button>
+            </div>
+        </div>
+
+        <!-- Paso 3: Link Final -->
+        <div id="step-3" class="mystic-card hidden fade-in border-green-500">
+            <div class="rune-glow text-green-400" style="text-shadow: 0 0 15px #4ade80;"> ᚠᚱ </div>
+            <h2 class="text-2xl mb-4">¡LO HAS LOGRADO!</h2>
+            <p class="text-sm text-slate-300 mb-6">Has demostrado ser digno. haz encontrado las dos pistas LIBRO Y MAGIA, una chica necesita tu ayuda, ¿la acompañaras en este historia?.</p>
+            
+            <div class="p-4 bg-slate-800 rounded mb-6 text-left border-l-4 border-indigo-500">
+                <p class="text-xs italic text-indigo-300">"Las runas no mienten, este camino te ha elegido."</p>
+            </div>
+
+            <a href="https://www.amazon.com/dp/B0GJT736FD/ref=sr_1_1?dib=eyJ2IjoiMSJ9.XKLNpchdY9zfLa34ka85ZKU4dGbLNIDau0c613rzwnWRzBzhfqo4d4zWgD6vWmfq30c9lW6mRXnGLrs8kKwTgB5cRrbK9MMjlqVTBVjA17y8Gnn96wWmmJ_0GKeNyBgEQwCptbnl2dxN_HcX00VYY_gPiGLDbYocebtqECdwQFeZyouqoLxnAw1CQ8PPs-eKF3RboQGPeHfsViwrY97V5ZFxXGkggV4yvCCCk5LofPc.sUdYUr4lfj5lVjxjvfyjuZI0i4W-v9JLaTkKV5dbmQI&dib_tag=se&qid=1769619203&refinements=p_27%3ALuis+Aguilera&s=digital-text&sr=1-1" target="_blank" class="block bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded shadow-lg transition-transform transform hover:scale-105 uppercase tracking-widest">
+                ABRIR MANUSCRITO
+            </a>
+            <p class="text-[16px] mt-4 text-[#ccff00] uppercase">Disponible en Amazon Kindle, para ver el contenido completo debes buscarlo en app kindle</p>
+            <div class="copyright-tag mt-4">Derechos de Autor Reservados ©</div>
+        </div>
+
+    </div>
+
+    <script>
+        const content = {
+            1: "Tengo hojas pero no soy árbol,\ntengo lomo pero no soy animal,\nen mi escriben la historia, a través del tiempo, la he de guiar.\n¿Qué soy?",
+            2: "A los magos les pertenece,\nlos brujos la utilizan mal.\nalgunos la ven en todas partes,\notros jamas la pueden alcanzar.\n¿Qué Soy?"
+        };
+
+        function typeWriter(text, elementId, callback) {
+            let i = 0;
+            const ele = document.getElementById(elementId);
+            ele.innerHTML = "";
+            function type() {
+                if (i < text.length) {
+                    ele.innerHTML += text.charAt(i) === "\n" ? "<br>" : text.charAt(i);
+                    i++;
+                    setTimeout(type, 40);
+                } else {
+                    if(callback) callback();
+                }
+            }
+            type();
+        }
+
+        function nextStep(step) {
+            document.querySelectorAll('#game-container > div').forEach(div => div.classList.add('hidden'));
+            const next = document.getElementById('step-' + step);
+            next.classList.remove('hidden');
+            
+            if (content[step]) {
+                document.getElementById('ui-' + step).classList.add('opacity-0');
+                typeWriter(content[step], 'text-' + step, () => {
+                    document.getElementById('ui-' + step).classList.remove('opacity-0');
+                    const input = next.querySelector('input');
+                    if (input) input.focus();
+                });
+            }
+
+            spawnParticles(15);
+        }
+
+        function normalize(str) {
+            return str.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
+
+        function checkStep1() {
+            const val = normalize(document.getElementById('ans-1').value);
+            if (val === 'libro' || val === 'el libro' || val === 'un libro') {
+                nextStep(2);
+            } else {
+                showError(1);
+            }
+        }
+
+        function checkStep2() {
+            const val = normalize(document.getElementById('ans-2').value);
+            if (val.includes('conocimiento') || val.includes('saber') || val.includes('magia') || val.includes('aprender')) {
+                nextStep(3);
+            } else {
+                showError(2);
+            }
+        }
+
+        function showError(step) {
+            const err = document.getElementById('error-' + step);
+            err.style.opacity = '1';
+            const card = err.closest('.mystic-card');
+            card.style.transform = "translateX(8px)";
+            setTimeout(() => card.style.transform = "translateX(-8px)", 80);
+            setTimeout(() => card.style.transform = "translateX(0)", 160);
+            setTimeout(() => { err.style.opacity = '0'; }, 2500);
+        }
+
+        function spawnParticles(n) {
+            for (let i = 0; i < n; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 3 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.top = '100vh';
+                p.style.opacity = Math.random();
+                p.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(p);
+                setTimeout(() => p.remove(), 4000);
+            }
+        }
+
+        document.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                if (!document.getElementById('step-1').classList.contains('hidden')) checkStep1();
+                else if (!document.getElementById('step-2').classList.contains('hidden')) checkStep2();
+            }
+        });
+
+        setInterval(() => spawnParticles(1), 1500);
+    </script>
+</body>
+</html>
