@@ -63,12 +63,13 @@
             box-shadow: 0 0 30px rgba(99, 102, 241, 0.2);
             backdrop-filter: blur(10px);
             border-radius: 12px;
-            width: 90%;
+            width: 95%;
             max-width: 500px;
             padding: 2.5rem;
             text-align: center;
             position: relative;
             transition: all 0.5s ease;
+            margin: 20px;
         }
 
         .rune-glow {
@@ -168,6 +169,12 @@
             margin-top: 2rem;
             text-transform: uppercase;
         }
+        
+        .secondary-link {
+            border-top: 1px solid rgba(99, 102, 241, 0.3);
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -215,7 +222,7 @@
         <div id="step-3" class="mystic-card hidden fade-in border-green-500">
             <div class="rune-glow text-green-400" style="text-shadow: 0 0 15px #4ade80;"> ᚠᚱ </div>
             <h2 class="text-2xl mb-4">¡LO HAS LOGRADO!</h2>
-            <p class="text-sm text-slate-300 mb-6">Has demostrado ser digno. haz encontrado las dos pistas LIBRO Y MAGIA, una chica necesita tu ayuda, ¿la acompañaras en esta historia?.</p>
+            <p class="text-sm text-slate-300 mb-6">Has demostrado ser digno. Haz encontrado las dos pistas LIBRO Y MAGIA, una chica necesita tu ayuda, ¿la acompañarás en esta historia?.</p>
             
             <div class="p-4 bg-slate-800 rounded mb-6 text-left border-l-4 border-indigo-500">
                 <p class="text-xs italic text-indigo-300">"Las runas no mienten, este camino te ha elegido."</p>
@@ -224,8 +231,18 @@
             <a href="https://www.amazon.com/dp/B0GJT736FD/ref=sr_1_1?dib=eyJ2IjoiMSJ9.XKLNpchdY9zfLa34ka85ZKU4dGbLNIDau0c613rzwnWRzBzhfqo4d4zWgD6vWmfq30c9lW6mRXnGLrs8kKwTgB5cRrbK9MMjlqVTBVjA17y8Gnn96wWmmJ_0GKeNyBgEQwCptbnl2dxN_HcX00VYY_gPiGLDbYocebtqECdwQFeZyouqoLxnAw1CQ8PPs-eKF3RboQGPeHfsViwrY97V5ZFxXGkggV4yvCCCk5LofPc.sUdYUr4lfj5lVjxjvfyjuZI0i4W-v9JLaTkKV5dbmQI&dib_tag=se&qid=1769619203&refinements=p_27%3ALuis+Aguilera&s=digital-text&sr=1-1" target="_blank" class="block bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-4 rounded shadow-lg transition-transform transform hover:scale-105 uppercase tracking-widest">
                 ABRIR MANUSCRITO
             </a>
-            <p class="text-[16px] mt-4 text-[#ccff00] uppercase">Disponible en Amazon Kindle, para ver el contenido completo debes buscarlo en app kindle</p>
-            <div class="copyright-tag mt-4">Derechos de Autor Reservados LUIS AGUILERA ALBIÑA ©</div>
+            
+            <p class="text-[14px] mt-4 text-[#ccff00] uppercase font-bold px-2">Disponible en Amazon Kindle, para ver el contenido completo debes buscarlo en app kindle</p>
+
+            <!-- Nueva sección para Link adicional -->
+            <div class="secondary-link">
+                <p class="text-xs text-slate-400 mb-3 tracking-widest uppercase">Camino Alternativo</p>
+                <a href="ESCRIBE_AQUI_TU_LINK" target="_blank" class="text-indigo-400 hover:text-white transition-colors duration-300 text-sm border border-indigo-500/30 px-4 py-2 rounded-full inline-block">
+                    VER ENTRADA ADICIONAL
+                </a>
+            </div>
+
+            <div class="copyright-tag mt-6">Derechos de Autor Reservados LUIS AGUILERA ALBIÑA ©</div>
         </div>
 
     </div>
@@ -327,7 +344,6 @@
         setInterval(() => spawnParticles(1), 1500);
     </script>
 </body>
-
 </html>
 
 
